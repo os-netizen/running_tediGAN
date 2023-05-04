@@ -191,14 +191,16 @@ class StyleGANInverter(object):
     network_path="/content/gdrive/MyDrive/running_tediGAN/models/network-snapshot-000500.pkl"
 
     if self.mode == 'gen':
+
+      x=generate.generate_images(None, network_path, [69], 1, "const", "/content/out", None, None)
 #       init_z = self.G.sample(1, latent_space_type='wp',
 #                              z_space_dim=512, num_layers=12)
-      init_z=np.random.randn(1, 14, 512)
+      init_z=projector.run_projection(network_path, x, None, False, 303, 1000)
+      # init_z=np.random.randn(1, 14, 512)
       # init_z = self.G.preprocess(init_z, latent_space_type='wp')
       z = torch.Tensor(init_z).to(self.run_device)
       z.requires_grad = True
       # x = self.G._synthesize(init_z, latent_space_type='wp')['image']
-      x=generate.generate_images(None, network_path, None, 1, "const", "/content/out", None, init_z)
       x = torch.Tensor(x).to(self.run_device)
     else:
       x = image[np.newaxis]
