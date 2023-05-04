@@ -13,7 +13,7 @@ from models.perceptual_model import PerceptualModel
 
 import sys
 # add path of styleGAN repo
-path=r'/content/styleGAN2'
+path=r'/content/running_tediGAN/styleGAN2'
 sys.path.append(path)
 import generate
 import projector
