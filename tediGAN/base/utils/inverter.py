@@ -4,6 +4,7 @@
 from tqdm import tqdm
 import cv2
 import numpy as np
+import random
 
 import torch
 import clip
@@ -191,8 +192,8 @@ class StyleGANInverter(object):
     network_path="/content/gdrive/MyDrive/running_tediGAN/models/network-snapshot-000500.pkl"
 
     if self.mode == 'gen':
-
-      x=generate.generate_images(None, network_path, [69], 1, "const", "/content/out", None, None)
+      seed=random.randint(1, 999)
+      x=generate.generate_images(None, network_path, [seed], 1, "const", "/content/out", None, None)
 #       init_z = self.G.sample(1, latent_space_type='wp',
 #                              z_space_dim=512, num_layers=12)
       init_z=projector.run_projection(network_path, x, None, False, 303, 1000)
