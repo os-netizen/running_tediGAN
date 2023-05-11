@@ -214,9 +214,9 @@ class StyleGANInverter(object):
 
     viz_results = []
     viz_results.append(self.G.postprocess(_get_tensor_value(x))[0])
-    x_init_inv = self.G.net.synthesis(z)
+#     x_init_inv = self.G.net.synthesis(z)
     # x_init_inv=generate_images(None, network_path, None, 1, "const", out_dir, None, z)
-    viz_results.append(self.G.postprocess(_get_tensor_value(x_init_inv))[0])
+#     viz_results.append(self.G.postprocess(_get_tensor_value(x_init_inv))[0])
     pbar = tqdm(range(1, self.iteration + 1), leave=True)
     for step in pbar:
       loss = 0.0
